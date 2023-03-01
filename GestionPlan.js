@@ -413,7 +413,7 @@ lever(e)
   // this.stopGlisse();
   // this.coeffGlisse = this.coeffGlisseInitial;
   //console.log("startGlisse");
-  //this.myInterval = setInterval(this.defilementScroll.bind(planDeSalle),this.intervalAnimationMs);
+  this.myInterval = setInterval(this.defilementScroll.bind(planDeSalle),this.intervalAnimationMs);
 
   this.boolZoom = true;
   this.lastScale = 1;
