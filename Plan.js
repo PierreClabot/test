@@ -596,7 +596,7 @@ class Plan {
         this.viewPort.x+= -(vect.x/this.zoom);
         this.viewPort.y+= -(vect.y/this.zoom);
         this.update();
-        //this.dessineThread();
+        this.dessineThread();
     }
     setPosition(point){
         this.viewPort.x=point.x/this.zoom;
