@@ -43,7 +43,7 @@ class Plan {
         this.viewPort=new DOMRect(0,0,this.boundsB1.width,this.boundsB1.height);
                 
         this.abortController=null;
-        this.qt=new Quadtree(this.bounds,150,4);
+        this.qt=new Quadtree(this.bounds,150,8);
   
         // window.URL = window.URL || window.webkitURL;
         // let response2=this.workerJob.toString().replace('workerJob()', '');
@@ -588,12 +588,15 @@ class Plan {
         this.update();
         this.dessineThread();
     }
-
+    actualise(){
+        this.update();
+        this.dessineThread();
+    }
     bouge(vect) {
         this.viewPort.x+= -(vect.x/this.zoom);
         this.viewPort.y+= -(vect.y/this.zoom);
         this.update();
-        this.dessineThread();
+        //this.dessineThread();
     }
     setPosition(point){
         this.viewPort.x=point.x/this.zoom;

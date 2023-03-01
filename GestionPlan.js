@@ -14,12 +14,12 @@ class PlanDeSalle{
                       <div Class="btn-plan-commande" id="PLAN Debug ON" onClick="document.querySelector('#PLAN-DBG').style.display='block';">Dbg ON</div>
                       <div class="btn-plan-commande" id="PLAN Debug OFF" onClick="document.querySelector('#PLAN-DBG').style.display='none';">Dbg Off</div>
                     </div>`;
-                    console.log(globalContainer);
       globalContainer.insertAdjacentHTML("afterbegin", contenu );
       // container.insertBefore(newNode,contenu)
       // document.querySelector(".btn-plan-container").remove();
     }
     
+    this.debug = false;
 
     this.mouseStartPosition = {x: 0, y: 0};
     this.mousePosition = {x: 0, y: 0};
@@ -81,6 +81,7 @@ class PlanDeSalle{
     this.toleranceMouse = 5;
     this.toleranceTouch = 5;
 
+    this.timer;
     const svg = document.querySelector("#canvas");
     
     //this.maxScale = 5;
@@ -97,7 +98,6 @@ class PlanDeSalle{
     // }
 
     const domEvent = document.querySelector("#canvas");
-    console.log(domEvent);
     // const domDebug = document.querySelector(".debug");
     this.etat = "rien";
     this.historiqueAppuis = [];
@@ -131,6 +131,7 @@ class PlanDeSalle{
     domEvent.addEventListener("mousedown",(e)=>{
         e.preventDefault();
         e.stopPropagation();
+        this.timer =  Date.now();
         if(this.etat == "rien"){
             this.etat = "bouge1point";
             this.historiqueAppuis[0] = this.creePointHistorique(e.clientX,e.clientY,e.clientX,e.clientY);
@@ -159,6 +160,25 @@ class PlanDeSalle{
               x:this.historiqueAppuis[1].mp1p2.x - this.historiqueAppuis[0].mp1p2.x,
               y:this.historiqueAppuis[1].mp1p2.y - this.historiqueAppuis[0].mp1p2.y
             }
+
+            // **** AJOUT *****/
+            if(this.boolPremierScale)
+            {
+              this.vInit =this.norme2Points( {X:e.touches[0].clientX,Y:e.touches[0].clientY }, {X:e.touches[1].clientX,Y:e.touches[1].clientY } );
+              this.scaleInit=this.plan.getZoom();
+              this.boolPremierScale = false;
+            }
+            let vT = this.norme2Points( {X:e.touches[0].clientX,Y:e.touches[0].clientY }, {X:e.touches[1].clientX,Y:e.touches[1].clientY } );
+            let coefScale = vT/this.vInit;
+            let scale = this.scaleInit * coefScale;
+            // this.debug("Scale "+scale)
+            if(scale < 1)
+            {
+              this.plan.ezoom(this.plan.getZoom()/1.5);
+            }
+            else{
+              this.plan.ezoom(this.plan.getZoom()*1.5)
+            }
             return;
         }
 
@@ -178,7 +198,6 @@ class PlanDeSalle{
                 x:this.historiqueAppuis[1].p1.x - this.historiqueAppuis[0].p1.x,
                 y:this.historiqueAppuis[1].p1.y - this.historiqueAppuis[0].p1.y
             }
-            console.log(v);
             this.plan.bouge(v);
             return;
         }
@@ -205,12 +224,22 @@ class PlanDeSalle{
     })
 
     domEvent.addEventListener("mouseup",(e)=>{
-
+        this.plan.actualise();
+        
         if(this.etat == "bouge1point")
         {
+            
+            let timer = Date.now();
             this.etat = "rien";
             this.historiqueAppuis[0] = this.creePointHistorique(0,0,0,0);
             this.historiqueAppuis[1] = this.creePointHistorique(0,0,0,0);
+
+            if(timer-this.timer<200)
+            {
+              this.plan.aim(e.offsetX,e.offsetY);
+              console.log("aim");
+            }
+
             return;
         }
         // debug("Ne devrait jamais arriver");
@@ -219,23 +248,17 @@ class PlanDeSalle{
     domEvent.addEventListener("wheel",(e)=>{
       e.preventDefault();
       e.stopPropagation();
-      //console.log(e);
       var ezoom = this.plan.getZoom();
       if(e.deltaY<0)
       {
         ezoom = 2;
         this.plan.ezoom(ezoom);
-        console.log("je zoom");
       }
       else{
         ezoom = 0.5;
         this.plan.ezoom(ezoom);
-        console.log("z0:"+ezoom);
-        console.log("je dezoom");
       }
-      console.log("z1:"+ezoom)
 
-      console.log("z2:"+ezoom)
       // this.plan.ezoom(ezoom);
     })
 
@@ -289,7 +312,7 @@ class PlanDeSalle{
 
 afficheHeure(){
   let date = new Date();
-  console.log(date)
+
 }
 
 
@@ -339,13 +362,11 @@ bougerEn(event,x,y)
       X : x,
       Y : y
     }
-    console.log("historiquePos",this.historiquePos);
     this.vecteur={
       X:this.historiquePos[1].X - this.historiquePos[0].X,
       Y:this.historiquePos[1].Y - this.historiquePos[0].Y,
     }
     this.plan.bouge({x:this.vecteur.X,y:this.vecteur.Y})
-    console.log(this.vecteur);
     
     
     let posActuelle={X : this.plan.getPosition().x,Y : this.plan.getPosition().y};
@@ -363,7 +384,6 @@ stopGlisse(){
   {
     clearInterval(this.myInterval)
     this.myInterval = 0;
-    //console.log("stopGlisse");
     this.vecteur = {
       X:0,
       Y:0
@@ -390,7 +410,7 @@ lever(e)
   // }
   // Calculer le vecteur vitesse
   // mémoriser la position du svg
-  this.stopGlisse();
+  // this.stopGlisse();
   // this.coeffGlisse = this.coeffGlisseInitial;
   //console.log("startGlisse");
   //this.myInterval = setInterval(this.defilementScroll.bind(planDeSalle),this.intervalAnimationMs);
@@ -414,8 +434,6 @@ defilementScroll()
   //console.log("*=",this.vecteur);
 
   let SVGPos={X:this.plan.getPosition().x,Y:this.plan.getPosition().y};
-  console.log(SVGPos);
-  console.log("defilementScroll");
   SVGPos = {
     X : this.vecteur.X + SVGPos.X,
     Y : this.vecteur.Y + SVGPos.Y
@@ -462,7 +480,6 @@ defilementScroll()
 
 
 mouseup(e) { // debug
-  console.log("*****MOUSEU");
   window.removeEventListener("mouseup", this.mouseup);
   //mouseDown = false;
 }
@@ -511,12 +528,20 @@ svgPositionDonne() {
 
 debug(chaine)
 {
-  console.log(chaine);
+  if(this.debug == false)
+  {
+    return;
+  }
+  //console.log(chaine);
   document.querySelector(".event").innerHTML += "<br>"+chaine;
 }
 debugL(chaine)
 {
-  console.log(chaine);
+  if(this.debug == false)
+  {
+    return;
+  }
+  //console.log(chaine);
   document.querySelector(".event").innerHTML += chaine;
 }
 
@@ -577,8 +602,8 @@ createObj()
       
 
       ob.push( { name : 'objet '+i,
-                x :Math.floor(Math.random() * 1000)+2,
-                y : Math.floor(Math.random() * 1000)+2,
+                x :Math.floor(Math.random() * 788)+2,
+                y : Math.floor(Math.random() * 788)+2,
                 width:  Math.floor(Math.random() * 10)+2,
                 height : Math.floor(Math.random() *10)+2
 
