@@ -152,7 +152,7 @@ class PlanDeSalle{
             this.plan.bouge(v);
             return;
         }
-        if(this.etat == "bouge2points"){
+        if(this.etat == "bouge2points"){ // JE ZOOM
             historiqueAppuis = historisePoint(historiqueAppuis,e.clientX,e.clientY,0,0);
             let v = 
             {
