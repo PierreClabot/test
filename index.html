@@ -20,133 +20,17 @@
     }
 </style>
 <body>
-    <div class="debug">
-
-    </div>
-    <div class="event">
-
-    </div>
-    <script>
-        const domEvent = document.querySelector(".event");
-        const domDebug = document.querySelector(".debug");
-        var etat = "rien";
-        var historiquePoints = [];
-        var pt1 = {x:0,y:0};
-        var pt2 = {x:0,y:0};
-        historiquePoints.push(pt1);
-        historiquePoints.push(pt2);
-
-        domEvent.addEventListener("touchstart",(e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            if(etat == "rien"){
-                etat = "bouge1point";
-                historiquePoints[0] = { 
-                    x : e.touches[0].clientX,
-                    y : e.touches[0].clientY 
-                }
-                historiquePoints[1] = {
-                    x : e.touches[0].clientX,
-                    y : e.touches[0].clientY 
-                }
-                debug("********** 1er Appui **********");
-            }
-            else if(etat == "bouge1point")
-            {
-                etat = "bouge2points";
-                historiquePoints[1] = {
-                    x : e.touches[1].clientX,
-                    y : e.touches[1].clientY 
-                }
-                debug("********** 2ème Appui **********");
-            }
-            debug(`START Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-            debug(`START Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
-        })
-
-        domEvent.addEventListener("mousedown",(e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            if(etat == "rien"){
-                etat = "bouge1point";
-                historiquePoints[0] = { 
-                    x : e.clientX,
-                    y : e.clientY 
-                }
-            }
-            debug("********** 1er Appui **********");
-            debug(`START Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-        })
-
-        domEvent.addEventListener("touchmove",(e)=>{
-            if(etat == "bouge1point")
-            {
-                historiquePoints[0] = {
-                    x:e.touches[0].clientX,
-                    y:e.touches[0].clientY
-                }
-                historiquePoints[1] = {
-                    x:e.touches[0].clientX,
-                    y:e.touches[0].clientY
-                }
-                debug("********** Je me déplace **********");
-            }
-            else if(etat == "bouge2points"){
-                historiquePoints[0] = {
-                    x:e.touches[0].clientX,
-                    y:e.touches[0].clientY
-                }
-                historiquePoints[1] = {
-                    x:e.touches[1].clientX,
-                    y:e.touches[1].clientY
-                }
-                debug("********** Je zoom **********");
-            }
-            debug(`MOVE Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-            debug(`MOVE Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
-        })
-
-        domEvent.addEventListener("mousemove",(e)=>{
-            // debug(etat);
-            debug("********** Je me déplace **********");
-            debug(`MOVE Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-            debug(`MOVE Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
-        })
-
-        domEvent.addEventListener("touchend",(e)=>{
-
-            if(etat == "bouge1point")
-            {
-                etat = "rien";
-                historiquePoints = [{x:0,y:0},{x:0,y:0}]
-                debug("********** Je retire mon premier doigt **********");
-            }
-            else if(etat == "bouge2points")
-            {
-                etat = "bouge1point";
-                historiquePoints[1] = {
-                    x:historiquePoints[0].x,
-                    y:historiquePoints[0].y
-                }
-                debug("********** Je retire mon 2eme doigts **********");
-            }
-            debug(`END Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-            debug(`END Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
-        })
-
-        domEvent.addEventListener("mouseup",(e)=>{
-
-            if(etat == "bouge1point")
-            {
-                etat = "rien";
-            }
-            debug(`END Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
-        })
-
-        function debug(cha)
-        {
-            domDebug.innerHTML += cha +"<br>";
-        }
-    </script>
+    <div data-name="PLAN-SALLE" style="text-align:center">
+        <div class="btn-plan-commande" id="PLAN-CENTRER">Centrer</div>
+        <div style="position: relative; width: 800px; height: 800px;border: black solid 1px;">
+          <canvas id="canvas" style="position: absolute;left: 0;width: 800px; height: 800px; border: red solid 1px;" width="800px" height="800px"></canvas>
+        </div>
+      </div>
+      <script src="QuadTree.js"></script>
+      <script src="Plan.js"></script>
+      <script src="GestionPlan.js"></script>
+      <script>
+        const canvas = new PlanDeSalle();
+      </script>
 </body>
 </html>
