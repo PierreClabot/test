@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .debug{
+        width: 100%;
+        height: 200px;
+        border :  red solid 1px;
+        overflow-y: scroll;
+    }
+    .event{
+        width: 100%;
+        height: 500px;
+        border: black solid 1px;
+    }
+</style>
+<body>
+    <div class="debug">
+
+    </div>
+    <div class="event">
+
+    </div>
+    <script>
+        const domEvent = document.querySelector(".event");
+        const domDebug = document.querySelector(".debug");
+        var etat = "rien";
+
+        domEvent.addEventListener("touchstart",(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            if(etat == "rien"){
+                etat = "bouge1point";
+            }
+            else if(etat == "bouge1point")
+            {
+                etat = "bouge2points";
+            }
+        })
+
+        domEvent.addEventListener("mousedown",(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            if(etat == "rien"){
+                etat = "bouge1point";
+            }
+        })
+
+        domEvent.addEventListener("touchmove",(e)=>{
+            debug(etat);
+        })
+
+        domEvent.addEventListener("mousemove",(e)=>{
+            debug(etat);
+        })
+
+        domEvent.addEventListener("touchend",(e)=>{
+
+        })
+
+        domEvent.addEventListener("mouseup",(e)=>{
+
+            if(etat == "bouge1point")
+            {
+                etat = "rien";
+            }
+            else if(etat == "bouge2point")
+            {
+                etat = "bouge1point";
+            }
+            
+
+        })
+
+        function debug(cha)
+        {
+            domDebug.innerHTML += cha +"<br>";
+        }
+    </script>
+</body>
+</html>
