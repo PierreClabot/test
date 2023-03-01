@@ -49,6 +49,7 @@
                     x : e.touches[0].clientX,
                     y : e.touches[0].clientY 
                 }
+                debug("********** 1er Appui **********");
             }
             else if(etat == "bouge1point")
             {
@@ -57,6 +58,7 @@
                     x : e.touches[1].clientX,
                     y : e.touches[1].clientY 
                 }
+                debug("********** 2ème Appui **********");
             }
             debug(`START Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
             debug(`START Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
@@ -72,6 +74,7 @@
                     y : e.clientY 
                 }
             }
+            debug("********** 1er Appui **********");
             debug(`START Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
         })
 
@@ -86,6 +89,7 @@
                     x:e.touches[0].clientX,
                     y:e.touches[0].clientY
                 }
+                debug("********** Je me déplace **********");
             }
             else if(etat == "bouge2points"){
                 historiquePoints[0] = {
@@ -96,14 +100,15 @@
                     x:e.touches[1].clientX,
                     y:e.touches[1].clientY
                 }
+                debug("********** Je zoom **********");
             }
-            debug(`ETAT : ${etat}`);
             debug(`MOVE Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
             debug(`MOVE Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
         })
 
         domEvent.addEventListener("mousemove",(e)=>{
             // debug(etat);
+            debug("********** Je me déplace **********");
             debug(`MOVE Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
             debug(`MOVE Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
         })
@@ -114,6 +119,7 @@
             {
                 etat = "rien";
                 historiquePoints = [{x:0,y:0},{x:0,y:0}]
+                debug("********** Je retire mon premier doigt **********");
             }
             else if(etat == "bouge2points")
             {
@@ -122,6 +128,7 @@
                     x:historiquePoints[0].x,
                     y:historiquePoints[0].y
                 }
+                debug("********** Je retire mon 2eme doigts **********");
             }
             debug(`END Point1 : {x:${historiquePoints[0].x}, y:${historiquePoints[0].y}}`);
             debug(`END Point2 : {x:${historiquePoints[1].x}, y:${historiquePoints[1].y}}`);
