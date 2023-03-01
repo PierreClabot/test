@@ -61,6 +61,16 @@
 
         domEvent.addEventListener("touchend",(e)=>{
 
+            if(etat == "bouge1point")
+            {
+                etat = "rien";
+            }
+            else if(etat == "bouge2point")
+            {
+                etat = "bouge1point";
+            }
+            debug("TOUCHEND");
+
         })
 
         domEvent.addEventListener("mouseup",(e)=>{
@@ -74,7 +84,6 @@
                 etat = "bouge1point";
             }
             
-
         })
 
         function debug(cha)
