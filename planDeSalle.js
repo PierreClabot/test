@@ -341,12 +341,6 @@ class PlanDeSalle{
 
             // this.debug("this.transformOriginX"+this.transformOrigin.X);
             // this.debug("this.transformOriginY"+this.transformOrigin.Y);
-
-            let chaViewBox = this.getViewBox();
-            let objViewBox = this.chaViewBoxVersObj(chaViewBox);
-            objViewBox.largeur *= scale;
-            objViewBox.hauteur *= scale;
-            chaViewBox = this.objViewBoxVersCha(objViewBox);
             this.debug("*******")
             if(coefScale>lastScale)
             {
@@ -355,6 +349,12 @@ class PlanDeSalle{
             else{
               this.debug("DEZOOM");
             }
+            let chaViewBox = this.getViewBox();
+            let objViewBox = this.chaViewBoxVersObj(chaViewBox);
+            objViewBox.largeur *= scale;
+            objViewBox.hauteur *= scale;
+            chaViewBox = this.objViewBoxVersCha(objViewBox);
+
             lastScale = coefScale;
             // this.debug(this.vInit);
             //this.debug("Scale "+scale)
