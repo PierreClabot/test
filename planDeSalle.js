@@ -385,7 +385,6 @@ class PlanDeSalle{
         let c
         if(e.wheelDeltaY < 0) // DEZOOM
         {
-          // scaleWheelDeltaY = scaleWheelDeltaY / 2;
           let chaViewBox = this.getViewBox();
           let objViewBox = this.chaViewBoxVersObj(chaViewBox);
           let ancienneHauteur = objViewBox.hauteur;
