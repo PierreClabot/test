@@ -333,8 +333,8 @@ class PlanDeSalle{
             // {
             //   this.transformOrigin.Y= 0;
             // }
-
-            let coefScale = vT/this.vInit;
+            let coefScale = this.vInit/vT;
+            //let coefScale = vT/this.vInit;
             this.debug(coefScale);
             let scale = this.scaleInit * coefScale;
 
