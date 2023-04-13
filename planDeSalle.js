@@ -353,8 +353,8 @@ class PlanDeSalle{
             {
               this.debug("DEZOOM");
             }
-            this.debug("Scale "+scale)
-            this.debug("chaViewBox"+chaViewBox);
+            //this.debug("Scale "+scale)
+            //this.debug("chaViewBox"+chaViewBox);
             this.setViewBox(chaViewBox);
         
             // this.zoom(e,scale);
