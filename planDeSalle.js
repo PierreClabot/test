@@ -335,6 +335,7 @@ class PlanDeSalle{
             // }
 
             let coefScale = vT/this.vInit;
+            this.debug(coefScale);
             let scale = this.scaleInit * coefScale;
 
             // this.debug("this.transformOriginX"+this.transformOrigin.X);
@@ -353,7 +354,7 @@ class PlanDeSalle{
             {
               this.debug("DEZOOM");
             }
-            this.debug(this.vInit);
+            // this.debug(this.vInit);
             //this.debug("Scale "+scale)
             //this.debug("chaViewBox"+chaViewBox);
             this.setViewBox(chaViewBox);
