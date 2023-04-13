@@ -339,7 +339,16 @@ class PlanDeSalle{
             this.debug("Scale "+scale)
             // this.debug("this.transformOriginX"+this.transformOrigin.X);
             // this.debug("this.transformOriginY"+this.transformOrigin.Y);
-            this.zoom(e,scale);
+
+            let chaViewBox = this.getViewBox();
+            let objViewBox = this.chaViewBoxVersObj(chaViewBox);
+            objViewBox.largeur *= scale;
+            objViewBox.hauteur *= scale;
+            chaViewBox = this.objViewBoxVersCha(objViewBox);
+            this.debug("chaViewBox"+chaViewBox);
+            this.setViewBox(chaViewBox);
+        
+            // this.zoom(e,scale);
         }
         if(e.touches.length == 1)
         {
