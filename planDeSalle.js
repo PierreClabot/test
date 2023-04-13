@@ -350,7 +350,7 @@ class PlanDeSalle{
               this.debug("DEZOOM");
             }
             lastScale = coefScale;
-            this.debug(lastScale);
+            this.debug("coefScale"+coefScale+"   lastScale"+lastScale);
             let chaViewBox = this.getViewBox();
             let objViewBox = this.chaViewBoxVersObj(chaViewBox);
             objViewBox.largeur *= scale;
