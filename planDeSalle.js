@@ -347,7 +347,7 @@ class PlanDeSalle{
             objViewBox.largeur *= scale;
             objViewBox.hauteur *= scale;
             chaViewBox = this.objViewBoxVersCha(objViewBox);
-            this.debug("*****")
+            this.debug("*******")
             if(coefScale>lastScale)
             {
               this.debug("ZOOM");
