@@ -1,0 +1,9 @@
+.btn-plan-commande{
+    position: fixed;
+    top: 0;
+    background-color: black;
+    z-index: 10;
+}
+.btn-plan-commande i{
+    color: #fff;
+}
