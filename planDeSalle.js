@@ -347,11 +347,11 @@ class PlanDeSalle{
             if(coefScale>this.lastScale)
             {
               this.debug("ZOOM");
-              scale = 1.1;
+              scale = 0.95;
             }
             else{
               this.debug("DEZOOM");
-              scale = 0.9;
+              scale = 1.05;
             }
             this.lastScale = coefScale;
             
