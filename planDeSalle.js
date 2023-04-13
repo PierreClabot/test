@@ -293,13 +293,13 @@ class PlanDeSalle{
 
         if(e.touches.length > 1) // Plusieurs doigts simultanés
         {
-          let lastScale;
+  
             if(this.boolPremierScale)
             {
               this.vInit =this.norme2Points( {X:e.touches[0].clientX,Y:e.touches[0].clientY }, {X:e.touches[1].clientX,Y:e.touches[1].clientY } );
               this.scaleInit=this.scale;
               this.boolPremierScale = false;
-              lastScale=1;
+              this.lastScale=1;
             }
             let vT = this.norme2Points( {X:e.touches[0].clientX,Y:e.touches[0].clientY }, {X:e.touches[1].clientX,Y:e.touches[1].clientY } );
             
@@ -342,15 +342,15 @@ class PlanDeSalle{
             // this.debug("this.transformOriginX"+this.transformOrigin.X);
             // this.debug("this.transformOriginY"+this.transformOrigin.Y);
             this.debug("*******")
-            this.debug("coefScale"+coefScale+"   lastScale"+lastScale);
-            if(coefScale>lastScale)
+            this.debug("coefScale"+coefScale+"   lastScale"+this.lastScale);
+            if(coefScale>this.lastScale)
             {
               this.debug("ZOOM");
             }
             else{
               this.debug("DEZOOM");
             }
-            lastScale = coefScale;
+            this.lastScale = coefScale;
             
             let chaViewBox = this.getViewBox();
             let objViewBox = this.chaViewBoxVersObj(chaViewBox);
