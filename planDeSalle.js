@@ -343,6 +343,7 @@ class PlanDeSalle{
             // this.debug("this.transformOriginY"+this.transformOrigin.Y);
             //this.debug("*******")
             //this.debug("coefScale"+coefScale+"   lastScale"+this.lastScale);
+            let scale = 1;
             if(coefScale>this.lastScale)
             {
               this.debug("ZOOM");
