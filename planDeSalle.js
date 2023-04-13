@@ -336,7 +336,7 @@ class PlanDeSalle{
 
             let coefScale = vT/this.vInit;
             let scale = this.scaleInit * coefScale;
-            this.debug("Scale "+scale)
+
             // this.debug("this.transformOriginX"+this.transformOrigin.X);
             // this.debug("this.transformOriginY"+this.transformOrigin.Y);
 
@@ -345,6 +345,15 @@ class PlanDeSalle{
             objViewBox.largeur *= scale;
             objViewBox.hauteur *= scale;
             chaViewBox = this.objViewBoxVersCha(objViewBox);
+            if(scale>1)
+            {
+              this.debug("ZOOM");
+            }
+            if(scale<1)
+            {
+              this.debug("DEZOOM");
+            }
+            this.debug("Scale "+scale)
             this.debug("chaViewBox"+chaViewBox);
             this.setViewBox(chaViewBox);
         
