@@ -50,6 +50,8 @@ class PlanDeSalle{
     this.historiquePos=[{x:0,y:0},{x:0,y:0}];
     this.transformOrigin = {x:0,y:0}; // Ajout
     this.myInterval = 0 ;
+    this.zoomMax = 16;
+    this.zoomMin = 0.5;
     this.dernierePositionSVG = {
       X:0,
       Y:0
@@ -115,9 +117,9 @@ class PlanDeSalle{
       let zoom = true;
       let scaleWheelDeltaY = this.scale*2;
 
-      if(scaleWheelDeltaY>8)
+      if(scaleWheelDeltaY>this.zoomMax)
       {
-        scaleWheelDeltaY = 8;
+        scaleWheelDeltaY = this.zoomMax;
         zoom = false;
       }
 
@@ -136,9 +138,9 @@ class PlanDeSalle{
       let zoom = true;
       let scaleWheelDeltaY = this.scale*2;
 
-      if(scaleWheelDeltaY>8)
+      if(scaleWheelDeltaY>this.zoomMax)
       {
-        scaleWheelDeltaY = 8;
+        scaleWheelDeltaY = this.zoomMax;
         zoom = false;
       }
 
@@ -160,9 +162,9 @@ class PlanDeSalle{
       let zoom = true;
       let scaleWheelDeltaY = this.scale/2;
 
-      if(scaleWheelDeltaY<0.5)
+      if(scaleWheelDeltaY<this.zoomMin)
       {
-        scaleWheelDeltaY = 8;
+        scaleWheelDeltaY = this.zoomMin;
         zoom = false;
       }
 
@@ -185,9 +187,9 @@ class PlanDeSalle{
       let zoom = true;
       let scaleWheelDeltaY = this.scale/2;
 
-      if(scaleWheelDeltaY<0.5)
+      if(scaleWheelDeltaY<this.zoomMin)
       {
-        scaleWheelDeltaY = 8;
+        scaleWheelDeltaY = this.zoomMin;
         zoom = false;
       }
 

@@ -26,7 +26,8 @@ class PlanDeSalle{
       this.viewboxPosition = {x: 0, y: 0};
       this.viewboxSize = {x: 670, y: 1010};
       this.viewboxScale = 1.0;
-  
+      this.zoomMax = 16;
+      this.zoomMin = 0.5;
       this.etatJeDeplace = false;
       this.nom = "plan de salle";
   
@@ -115,9 +116,9 @@ class PlanDeSalle{
         let zoom = true;
         let scaleWheelDeltaY = this.scale*2;
   
-        if(scaleWheelDeltaY>8)
+        if(scaleWheelDeltaY>this.zoomMax)
         {
-          scaleWheelDeltaY = 8;
+          scaleWheelDeltaY = this.zoomMax;
           zoom = false;
         }
   
@@ -136,9 +137,9 @@ class PlanDeSalle{
         let zoom = true;
         let scaleWheelDeltaY = this.scale*2;
   
-        if(scaleWheelDeltaY>8)
+        if(scaleWheelDeltaY>this.zoomMax)
         {
-          scaleWheelDeltaY = 8;
+          scaleWheelDeltaY = this.zoomMax;
           zoom = false;
         }
   
@@ -160,9 +161,9 @@ class PlanDeSalle{
         let zoom = true;
         let scaleWheelDeltaY = this.scale/2;
   
-        if(scaleWheelDeltaY<0.5)
+        if(scaleWheelDeltaY<this.zoomMin)
         {
-          scaleWheelDeltaY = 8;
+          scaleWheelDeltaY = this.zoomMin;
           zoom = false;
         }
   
