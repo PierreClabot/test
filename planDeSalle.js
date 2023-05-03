@@ -355,8 +355,8 @@ class PlanDeSalle{
           }
 
           let diffOffSet = {
-              x : Math.abs(offsetX.touche1 - offsetX.touche2),
-              y : Math.abs(offsetY.touche1 - offsetY.touche2)
+              x : Math.abs((offsetX.touche1 + offsetX.touche2)/2),
+              y : Math.abs((offsetY.touche1 + offsetY.touche2)/2)
           }
 
           this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
