@@ -225,7 +225,7 @@ class PlanDeSalle{
     });
     /* TEST APPLE */
     document.addEventListener('gesturestart', function (e) {
-      e.preventDefault();
+      //e.preventDefault();
   });
 
 
