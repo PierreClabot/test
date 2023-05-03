@@ -329,7 +329,7 @@ class PlanDeSalle{
 
         
       e.stopPropagation();
-      e.preventDefault(); 
+      //e.preventDefault(); 
 
       if(e.touches.length > 1) // Plusieurs doigts simultanés
       {
