@@ -101,8 +101,8 @@ class PlanDeSalle{
     document.addEventListener("touchmove",(e)=>{
       if(e.touches.length>1)
       {
-        e.stopPropagation();
-        e.preventDefault();
+        //e.stopPropagation();
+        //e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     });
