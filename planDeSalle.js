@@ -278,15 +278,15 @@ class PlanDeSalle{
         y: e.changedTouches[0].clientY
       }
       console.log(this.premierAppui.x);
+      let x = (this.premierAppui.offsetX/this.scale) / svg.offsetWidth;
+      let y = (this.premierAppui.offsetY/this.scale) / svg.offsetHeight;
+      let data = { coefX:x , coefY:y };
       if((Math.abs(point.x-this.premierAppui.x)<this.toleranceTouch) && (Math.abs(point.y-this.premierAppui.y)<this.toleranceTouch))
       {
-        let x = (this.premierAppui.offsetX/this.scale) / svg.offsetWidth;
-        let y = (this.premierAppui.offsetY/this.scale) / svg.offsetHeight;
-        let data = { coefX:x , coefY:y };
         this.fire(data);
         this.stopGlisse();
-        this.debug(`data -> X: ${data.coefX} Y:${data.coefY}`);
       }
+      this.debug(`data -> X: ${data.coefX} Y:${data.coefY}`);
     })
 
     svg.addEventListener("mouseup",e=>{
