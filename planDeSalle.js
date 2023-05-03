@@ -328,7 +328,7 @@ class PlanDeSalle{
       //this.debugL(" *tm* ");
 
         
-      e.stopPropagation();
+      //e.stopPropagation();
       //e.preventDefault(); 
 
       if(e.touches.length > 1) // Plusieurs doigts simultanés
