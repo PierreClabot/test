@@ -692,7 +692,7 @@ lever(e)
   }
   this.t1 = Date.now();
   this.stopGlisse();
-  this.myInterval = setInterval(this.defilementScroll.bind(this),this.intervalAnimationMs);
+  //this.myInterval = setInterval(this.defilementScroll.bind(this),this.intervalAnimationMs);
 
 }
 
