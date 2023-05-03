@@ -361,6 +361,7 @@ class PlanDeSalle{
           }
 
           this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
+          this.debug(`widthSvg ${svg.offsetWidth}`);
 
 
           //this.debug(`this.transformOrigin(X:${this.transformOrigin.X}, Y:${this.transformOrigin.Y})`);
