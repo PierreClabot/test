@@ -359,7 +359,7 @@ class PlanDeSalle{
               x : Math.abs((offsetX.touche1 + offsetX.touche2)/2)/ (svg.offsetWidth*this.scale),
               y : Math.abs((offsetY.touche1 + offsetY.touche2)/2)/ (svg.offsetHeight*this.scale)
           }
-
+          svg.style.transformOrigin = `${diffOffSet.x}% ${diffOffSet.y}%`;
           this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
           this.debug(`widthSvg ${svg.offsetWidth}`);
 
