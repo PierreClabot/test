@@ -368,7 +368,7 @@ class PlanDeSalle{
           let coefScale = vT/this.vInit;
           let scale = this.scaleInit * coefScale;
 
-          // this.zoom(e,scale);
+          this.zoom(e,scale);
 
       }
       if(e.touches.length == 1)
