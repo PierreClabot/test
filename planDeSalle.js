@@ -360,7 +360,7 @@ class PlanDeSalle{
               y : Math.abs((offsetY.touche1 + offsetY.touche2)/2)
           }
 
-          // this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
+          this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
 
 
           //this.debug(`this.transformOrigin(X:${this.transformOrigin.X}, Y:${this.transformOrigin.Y})`);
