@@ -278,15 +278,16 @@ class PlanDeSalle{
         y: e.changedTouches[0].clientY
       }
       console.log(this.premierAppui.x);
-      let x = (this.premierAppui.offsetX/this.scale) / svg.offsetWidth;
-      let y = (this.premierAppui.offsetY/this.scale) / svg.offsetHeight;
-      let data = { coefX:x , coefY:y };
       if((Math.abs(point.x-this.premierAppui.x)<this.toleranceTouch) && (Math.abs(point.y-this.premierAppui.y)<this.toleranceTouch))
       {
+        let x = (this.premierAppui.offsetX/this.scale) / svg.offsetWidth;
+        let y = (this.premierAppui.offsetY/this.scale) / svg.offsetHeight;
+        let data = { coefX:x , coefY:y };
         this.fire(data);
         this.stopGlisse();
+        this.debug(`data -> X: ${data.coefX} Y:${data.coefY}`);
       }
-      this.debug(`data -> X: ${data.coefX} Y:${data.coefY}`);
+      console.log(e);
     })
 
     svg.addEventListener("mouseup",e=>{
@@ -474,8 +475,8 @@ class PlanDeSalle{
 
 
         let offset = {
-          x:e.touches[0].pageX - rect.left,
-          y:e.touches[0].pageY - rect.top,
+          x:e.changedTouches[0].pageX - rect.left,
+          y:e.changedTouches[0].pageY - rect.top,
         }
 
         this.debug(`offSetX : ${offset.x}  /  offsetY = ${offset.y}`) // @TODO
@@ -694,7 +695,7 @@ lever(e)
 
 defilementScroll()
 {
-  console.log(this);
+  //console.log(this);
   let SVGPos=this.svgPositionDonne();
   
   SVGPos = {
