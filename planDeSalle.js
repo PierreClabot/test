@@ -88,8 +88,6 @@ class PlanDeSalle{
     this.scaleWheelDeltaY = 1;
 
     this.domElement.onload = (e)=>{
-      //this.debug("offsetWidth : "+this.domElement.offsetWidth);
-      //console.log("onloadP425 "+this.domElement.offsetWidth);
     };
 
     document.addEventListener("touchstart",(e)=>{
