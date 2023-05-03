@@ -359,7 +359,7 @@ class PlanDeSalle{
               y : Math.abs((offsetY.touche1 + offsetY.touche2)/2)
           }
 
-          this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
+          // this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
 
 
           //this.debug(`this.transformOrigin(X:${this.transformOrigin.X}, Y:${this.transformOrigin.Y})`);
@@ -469,6 +469,16 @@ class PlanDeSalle{
          y:this.vecteur.Y
         }
         this.lever(e);   
+        
+        var rect = e.target.getBoundingClientRect();
+
+
+        let offset = {
+          x:e.touches[0].pageX - rect.left,
+          y:e.touches[0].pageY - rect.top,
+        }
+
+        this.debug(`offSetX : ${offset.x}  /  offsetY = ${offset.y}`) // @TODO
     })
 
 
