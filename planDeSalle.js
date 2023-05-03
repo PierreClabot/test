@@ -355,8 +355,8 @@ class PlanDeSalle{
           }
 
           let diffOffSet = {
-              x : rect.width-(offsetX.touche1 - offsetX.touche2),
-              y : rect.height-(offsetY.touche1 - offsetY.touche2)
+              x : (offsetX.touche1 - offsetX.touche2),
+              y : (offsetY.touche1 - offsetY.touche2)
           }
 
           this.debug(`offSetX : ${diffOffSet.x}  /  offsetY = ${diffOffSet.y}`)
