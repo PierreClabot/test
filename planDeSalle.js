@@ -93,16 +93,16 @@ class PlanDeSalle{
     document.addEventListener("touchstart",(e)=>{
       if(e.touches.length>1)
       {
-        // e.stopPropagation();
-        // e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     })
     document.addEventListener("touchmove",(e)=>{
       if(e.touches.length>1)
       {
-        //e.stopPropagation();
-        //e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     });
@@ -210,22 +210,22 @@ class PlanDeSalle{
     document.addEventListener("touchstart",(e)=>{
       if(e.touches.length>1)
       {
-        // e.stopPropagation();
-        // e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     })
     document.addEventListener("touchmove",(e)=>{
       if(e.touches.length>1)
       {
-        //e.stopPropagation();
-        //e.preventDefault();
+        e.stopPropagation();
+        e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     });
     /* TEST APPLE */
     document.addEventListener('gesturestart', function (e) {
-      //e.preventDefault();
+      e.preventDefault();
   });
 
 
@@ -306,8 +306,8 @@ class PlanDeSalle{
     
     container.addEventListener("touchstart",e=>{
       
-      // e.stopPropagation();
-      // e.preventDefault(); 
+      e.stopPropagation();
+      e.preventDefault(); 
       
       if (e.touches.length>1) {
         this.etatJeDeplace=false;
@@ -328,8 +328,8 @@ class PlanDeSalle{
       //this.debugL(" *tm* ");
 
         
-      //e.stopPropagation();
-      //e.preventDefault(); 
+      e.stopPropagation();
+      e.preventDefault(); 
 
       if(e.touches.length > 1) // Plusieurs doigts simultanés
       {
