@@ -210,8 +210,8 @@ class PlanDeSalle{
     document.addEventListener("touchstart",(e)=>{
       if(e.touches.length>1)
       {
-        e.stopPropagation();
-        e.preventDefault();
+        // e.stopPropagation();
+        // e.preventDefault();
         this.debugL(" !touchemovedocument! ");
       }
     })
@@ -306,8 +306,8 @@ class PlanDeSalle{
     
     container.addEventListener("touchstart",e=>{
       
-      e.stopPropagation();
-      e.preventDefault(); 
+      // e.stopPropagation();
+      // e.preventDefault(); 
       
       if (e.touches.length>1) {
         this.etatJeDeplace=false;
